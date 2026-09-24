@@ -1,0 +1,17 @@
+schema: osera-patch-evidence/0.1.0
+producer: moderne
+release: 5.6.15.Final-osera-00001
+baseline: v5.6.15.Final+patch.baseline
+fixes:
+  - cve: CVE-2026-0603
+    upstream: https://nvd.nist.gov/vuln/detail/CVE-2026-0603
+    artifacts:
+      - org.hibernate:hibernate-core
+    note: New in this release; ported onto 5.6.15.Final; fixed at 5.6.15.Final-backpatch-00001 (backpatch-hibernate-orm@425482e..ffd9df6).
+tests:
+  commit: 68cf5da5e0b06103f06837b091ca33a5b4b263d9
+  command: ./gradlew --quiet -Dbackpatch.version=5.6.15.Final-osera-00001 -Dbackpatch.repository.url=file:///tmp/osera-unused-repo -Dbackpatch.compile.jdk=8 -p hibernate-core test --rerun-tasks --tests org.hibernate.test.bulkid.InlineStringIdsInClauseBulkIdTest
+  runtime: OpenJDK 1.8.0_372 (Zulu), Gradle wrapper of the repository
+  report: hibernate-core-5.6.15.Final-osera-00001-tests.zip
+  result: pass
+  note: the regression tests the fix commits touched, 0 test(s) run, 0 failed, at the tested commit
