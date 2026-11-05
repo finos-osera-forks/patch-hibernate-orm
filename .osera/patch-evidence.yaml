@@ -1,17 +1,21 @@
+# Licensed under the Apache License, Version 2.0: https://www.apache.org/licenses/LICENSE-2.0
 schema: osera-patch-evidence/0.1.0
 producer: moderne
-release: 5.6.15.Final-osera-00001
+release: 5.6.15.Final-osera-00002
 baseline: v5.6.15.Final+patch.baseline
 fixes:
   - cve: CVE-2026-0603
-    upstream: https://nvd.nist.gov/vuln/detail/CVE-2026-0603
+    upstream_fix_url: https://github.com/hibernate/hibernate-orm/compare/02f06415bb73e21576eb68087977a677cc7c79f4...6f4aae562b6eec9466959fa7a6dcfd34b57cf7d0
+    advisory_url: https://nvd.nist.gov/vuln/detail/CVE-2026-0603
+    patch_commit_url: https://github.com/moderne-backpatch-alliance/backpatch-hibernate-orm/compare/425482e~1...ffd9df6
+    basis: backport
     artifacts:
       - org.hibernate:hibernate-core
-    note: New in this release; ported onto 5.6.15.Final; fixed at 5.6.15.Final-backpatch-00001 (backpatch-hibernate-orm@425482e..ffd9df6).
+    note: Carried from 5.6.15.Final-backpatch-00001; ported onto 5.6.15.Final; fixed at 5.6.15.Final-backpatch-00001 (backpatch-hibernate-orm@425482e..ffd9df6).
 tests:
-  commit: 68cf5da5e0b06103f06837b091ca33a5b4b263d9
-  command: ./gradlew --quiet -Dbackpatch.version=5.6.15.Final-osera-00001 -Dbackpatch.repository.url=file:///tmp/osera-unused-repo -Dbackpatch.compile.jdk=8 -p hibernate-core test --rerun-tasks --tests org.hibernate.test.bulkid.InlineStringIdsInClauseBulkIdTest
-  runtime: OpenJDK 1.8.0_372 (Zulu), Gradle wrapper of the repository
-  report: hibernate-core-5.6.15.Final-osera-00001-tests.zip
+  commit: d234b6db8a8f2e43604b080b5b051da6a0dd0bbe
+  command: none in this repository
+  runtime: none, no build or test ran for this release
+  report: carried, see the evidence of the release named in the note
   result: pass
-  note: the regression tests the fix commits touched, 0 test(s) run, 0 failed, at the tested commit
+  note: "this release is a tooling update, it carries no new fix, nothing ran here; its test provenance is tooling-2026-11-03-hibernate-5.6: a tooling update of moderne-backpatch-alliance/backpatch-hibernate-orm at v5.6.15.Final-backpatch-00001, whose .backpatch/patch-evidence.yaml says what ran"
